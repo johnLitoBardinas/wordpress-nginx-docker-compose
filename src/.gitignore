@@ -1,14 +1,22 @@
 # Application
-web/app/plugins/*
-!web/app/plugins/.gitkeep
 web/app/mu-plugins/*/
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
 
+# Plugins
+web/app/plugins/*
+!web/app/plugins/.gitkeep
+!web/app/plugins/instagram-feed-pro/
+!web/app/plugins/custom-css-js-pro/
+!web/app/mu-plugins/kinsta-mu-plugins/
+
+# Themes
+web/app/themes/ivystreet.old
+web/app/cache
+
 # WordPress
 web/wp
-web/.htaccess
 
 # Logs
 *.log
@@ -23,3 +31,13 @@ web/.htaccess
 
 # WP-CLI
 wp-cli.local.yml
+
+# IDEs
+.vscode
+
+.DS_Store
+web/app/themes/ivystreet/dist/
+
+# Local Development
+.lemp
+docker-compose*

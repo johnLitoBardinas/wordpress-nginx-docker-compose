@@ -1,0 +1,37 @@
+image:
+  name: ivystreet/deploy:node16-php8-composer_1
+  username: $USERNAME
+  password: $PASSWORD
+  email: $EMAIL
+
+pipelines:
+  branches:
+    develop:
+      - step:
+          caches:
+            - node
+            - composer
+          script:
+            # env setup
+            - node bitbucket-pipelines-env.js
+
+            # build commands
+            - source bitbucket-pipelines-build.sh
+
+            # deploy to kinsta staging
+            - rsync -lrogpqP --delete-after -e "ssh -i /home/deploy/.ssh/id_rsa -o StrictHostKeyChecking=no -p $STAGING_KINSTA_PORT" --exclude-from '.rsyncignore' . $KINSTA_USERNAME@$KINSTA_IP:/www/$KINSTA_FOLDER/public/
+
+    master:
+      - step:
+          caches:
+            - node
+            - composer
+          script:
+            # env setup
+            - node bitbucket-pipelines-env.js
+
+            # build commands
+            - source bitbucket-pipelines-build.sh
+
+            # deploy to kinsta live
+            - rsync -lrogpqP --delete-after -e "ssh -i /home/deploy/.ssh/id_rsa -o StrictHostKeyChecking=no -p $KINSTA_PORT" --exclude-from '.rsyncignore' . $KINSTA_USERNAME@$KINSTA_IP:/www/$KINSTA_FOLDER/public/
