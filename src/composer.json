@@ -55,7 +55,7 @@
     }
   ],
   "require": {
-    "php": ">=8.0",
+    "php": "^8.0.2",
     "composer/installers": "^2.0",
     "vlucas/phpdotenv": "^5.4.1",
     "oscarotero/env": "^2.1",
@@ -67,7 +67,8 @@
     "advanced-custom-fields/advanced-custom-fields-pro": "^6.0.3",
     "wpackagist-plugin/safe-svg": "^1.9",
     "wpackagist-plugin/forminator": "^1.14",
-    "wpackagist-plugin/classic-editor": "^1.6"
+    "wpackagist-plugin/classic-editor": "^1.6",
+    "roots/acorn": "2.1.2"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.6.0",
@@ -80,7 +81,8 @@
       "ffraenz/private-composer-installer": true,
       "composer/installers": true,
       "roots/wordpress-core-installer": true
-    }
+    },
+    "platform-check": false
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
@@ -104,6 +106,9 @@
     ],
     "test": [
       "phpcs"
+    ],
+    "post-autoload-dump": [
+      "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
     ]
   }
 }

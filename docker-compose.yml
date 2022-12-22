@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   nginx:
-    image: nginx:latest
+    image: nginx:1.23.2
     container_name: ${APP_NAME}-nginx
     ports:
       - '80:80'
@@ -64,7 +64,7 @@ services:
       - "1025:1025"
 
   composer:
-    image: composer
+    image: composer:2.2
     container_name: ${APP_NAME}-composer
     working_dir: /var/www/html
     restart: 'no'
